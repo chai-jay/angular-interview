@@ -1,6 +1,22 @@
 # angular-interview
 For working session while interviewing candidates
 
+## Steps:
+
+### Step 1 - Install Bootstrap and Setup app shell
+
+#### Install Bootstrap
+https://github.com/angular/angular-cli/wiki/stories-include-bootstrap
+* Run `npm install bootstrap@next --save`.
+* Add `"../node_modules/bootstrap/dist/css/bootstrap.min.css"` to `app[0].styles` property of file `.angular-cli.json`.
+
+#### Setup app shell
+
+In `app.component.html`:
+* Remove default code.
+* Add Bootstrap grid container.
+* *Optional* Add a Bootstrap navbar element.
+
 # AngularInterview
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
