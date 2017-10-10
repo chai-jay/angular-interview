@@ -89,6 +89,40 @@ In `app.component.html`:
     </form>
     ```
 
+### Step 5 - Adding submit to FormComponent and subscribe to Observable stream
+
+* Add a method `onSubmit()` to `FormComponent` class. 
+* Bind the submit event to method in template `(submit)="onSubmit()"`
+* Import `HttpClientModule` to `FormModule` so we can use `HttpClient`: `import { HttpClientModule } from '@angular/common/http';`
+    * *Note:* Can also use `HttpModule` though it's deprecated.
+* Create a `FormService` to abstract out handling of Ajax calls:
+    * Run `ng g s form/form --module=form` to scaffold service
+    * Import `HttpClient` to make GET request to mock backend server "https://jsonplaceholder.typicode.com/users/1"
+    * Return observable stream that `FormComponent` will subscribe to
+    ```
+    import { HttpClient } from '@angular/common/http';
+    import { Observable } from 'rxjs/Observable';
+    ...
+    constructor(private httpClient: HttpClient) { }
+
+    public login(username: string, password: string): Observable<any> {
+        return this.httpClient.get('https://jsonplaceholder.typicode.com/users/1');
+    }
+    ```
+* Display the data from observable stream in template using `async` and `json` pipes:
+    * Add property `user$` of type `Observable<any>` to `FormComponent` class.
+    * In `FormComponent`'s `onSubmit()` method, set `this.user$` to returned value of `FormService.login()`:
+    ```
+    public onSubmit(): void {
+        const username = this.loginForm.get('username').value,
+            password = this.loginForm.get('password').value;
+
+        this.user$ = this.formService.login(username, password);
+    }
+    ```
+    * In template of `FormComponent` unwrap result of observable with `async` and `json` pipes:
+    `<p [hidden]="!user$">{{ user$ | async | json }}</p>`
+
 # AngularInterview
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.

@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" (submit)="onSubmit()">
   <div>
     <label for="username">Username</label>
     <input type="text" id="username" formControlName="username" />
@@ -13,3 +13,5 @@
 
   <button type="submit" [disabled]="!loginForm.valid">Submit</button>
 </form>
+
+<p [hidden]="!user$">{{ user$ | async | json }}</p>
