@@ -123,6 +123,19 @@ In `app.component.html`:
     * In template of `FormComponent` unwrap result of observable with `async` and `json` pipes:
     `<p [hidden]="!user$">{{ user$ | async | json }}</p>`
 
+### Step 6 - CSS Freestyle on FormComponent's template
+
+* CSS freestyling on FormComponent!
+
+### Further optimizations:
+
+* Component for navbar
+* CoreModule for navbar, FormService
+* SharedModule for CommonModule
+* Maybe make login a promise since login isn't a good example for Observables.
+* Write unit tests and e2e tests
+* Etc
+
 # AngularInterview
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
