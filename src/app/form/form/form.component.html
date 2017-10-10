@@ -1,3 +1,15 @@
-<p>
-  form works!
-</p>
+<form [formGroup]="loginForm">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" formControlName="username" />
+    <div [hidden]="loginForm.get('username').valid || loginForm.get('username').untouched">Username is required</div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" />
+    <div [hidden]="loginForm.get('password').valid || loginForm.get('password').untouched">Password is required</div>
+  </div>
+
+  <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+</form>

@@ -67,6 +67,27 @@ In `app.component.html`:
     }
     ```
 
+### Step 4 - Adding reactive form to FormComponent - Hooking template to FormGroup
+* Create form template and bind the FormGroup to template of `FormComponent`. Adhere to the following requirements:
+    * Submit button should be disabled if the FormGroup is invalid.
+    * Add basic validation error msg per input that shows if FormControl has been touched and it is invalid.
+    * Don't bind submit event for now. 
+    ```
+    <form [formGroup]="loginForm">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username" />
+            <div [hidden]="loginForm.get('username').valid || loginForm.get('username').untouched">Username is required</div>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" />
+            <div [hidden]="loginForm.get('password').valid || loginForm.get('password').untouched">Password is required</div>
+        </div>
+        <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+    </form>
+    ```
+
 # AngularInterview
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
