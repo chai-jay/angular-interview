@@ -1,5 +1,5 @@
 # angular-interview
-For working session while interviewing candidates
+For working session while interviewing candidates. This focuses on lazy loading and creating a Reactive Form.
 
 ## Steps:
 
@@ -68,6 +68,7 @@ In `app.component.html`:
     ```
 
 ### Step 4 - Adding reactive form to FormComponent - Hooking template to FormGroup
+
 * Create form template and bind the FormGroup to template of `FormComponent`. Adhere to the following requirements:
     * Submit button should be disabled if the FormGroup is invalid.
     * Add basic validation error msg per input that shows if FormControl has been touched and it is invalid.
