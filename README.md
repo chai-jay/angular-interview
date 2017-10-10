@@ -31,6 +31,42 @@ In `app.component.html`:
 ```
 * Verify it works by going to any path and seeing that it redirects to '/form' and Network debugging tool shows a `___.chunk.js`.
 
+### Step 3 - Adding reactive form to FormComponent - Creating FormGroup
+
+* Import `ReactiveFormsModule` to `FormModule`.
+* In `FormComponent`, create the FormGroup for form (eg login form with username and password):
+    * Method 1: Use FormBuilder to build out FormGroup
+    ```
+    import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+    ...
+    public loginForm: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) {}
+    
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required, Validators.minLength(4)],
+            password: ['', Validators.required, Validators.minLength(8)]
+        });
+    }
+    ```
+
+    * Method 2: Define FormGroup object and explicitly declare each prop as a FormControl.
+    ```
+    import { FormControl, FormGroup, Validators } from '@angular/forms';
+    ...
+    public loginForm: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) {}
+    
+    ngOnInit() {
+        this.loginForm = new FormGroup({
+            username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+            password: new FormControl('', [Validators.required, Validators.minLength(8)])
+        });
+    }
+    ```
+
 # AngularInterview
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
